@@ -45,7 +45,10 @@ LOCAL_SRC_FILES := filters/gradient.c \
                    filters/tinyplanet.cc \
                    filters/kmeans.cc
 
-LOCAL_CFLAGS    += -ffast-math -O3 -funroll-loops
 LOCAL_ARM_MODE := arm
+
+ifneq ($(strip $(ENABLE_GRAPHITE)),true)
+LOCAL_CFLAGS += -O3 -ffast-math -funroll-loops
+endif
 
 include $(BUILD_SHARED_LIBRARY)
